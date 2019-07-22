@@ -17,16 +17,35 @@ export class Contact extends Component {
     // console.log(this.props.contact)
     return (
       <div style={this.getStyle()}>
-        <p style={{
+        <div
+          style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center"
-          }}>
-          {this.props.contact.name.title}
-          {". "}
-          {this.props.contact.name.first} {this.props.contact.name.last}
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              alignItems: "start"
+            }}
+          >
+            <p>
+              <u>Name</u>: {this.props.contact.name.title}
+              {". "}
+              {this.props.contact.name.first} {this.props.contact.name.last}
+            </p>
+            <p>
+              <u>Email</u>: {this.props.contact.email}
+            </p>
+            <p>
+              <u>Phone number</u>: {this.props.contact.phone}
+            </p>
+          </div>
           <button style={btnStyle}>Info</button>
-        </p>
+        </div>
       </div>
     );
   }

@@ -4,9 +4,13 @@ import Contacts from "./components/Contacts";
 import SearchContact from "./components/SearchContact";
 
 class App extends Component {
-  state = {
-    contacts: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      contacts: [],
+      searchedWord: ""
+    };
+  }
 
   componentDidMount() {
     fetch("https://randomuser.me/api?results=10&inc=name,phone,email")
@@ -18,13 +22,20 @@ class App extends Component {
       .catch(err => alert(err));
   }
 
+  searchEle = (e) => {
+    // console.log(e);
+    this.setState({searchedWord: e});
+    // somehow don't show
+    // console.log(this.state.searchedWord);
+  };
+
   render() {
     return (
       <div className="App">
-        <h1>Contacts</h1>
+        <h1 style={{ textAlign: "center" }}>Contacts</h1>
         <hr />
-        <SearchContact name={this.state.contacts} />
-        <Contacts contacts={this.state.contacts} />
+        <SearchContact name={this.state.contacts} searchEle={this.searchEle} />
+        <Contacts contacts={this.state.contacts} searchedWord={this.state.searchedWord} />
       </div>
     );
   }
